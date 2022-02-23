@@ -1,13 +1,14 @@
 import './App.css';
 import { FaMapMarkedAlt } from "react-icons/fa";
-import { FiGithub, FiLinkedin } from "react-icons/fi";
-import React from 'react';
+import { FiGithub, FiLinkedin, FiNavigation } from "react-icons/fi";
+import React,{useState} from 'react';
 import { useForm } from 'react-hook-form';
 
 function App() {
 
   const { register, handleSubmit, setValue, setFocus } = useForm();
 
+  const [cep,setCep] = useState();
 
   const onSubmit = (e) => {
     console.log(e);
@@ -41,31 +42,32 @@ function App() {
         <label className='App-link'>
           Cep
         </label>
-        <input style={{ width: '500px' }} placeholder='Cep' {...register("cep")} onBlur={Getcep} ></input>
+        <input className="form-control mb-2" style={{ width: '425px' }} placeholder='Cep' {...register("cep")} onBlur={Getcep} onChange={(e) => setCep(e.target.value)}></input>
         <label className='App-link'>
           Numero
         </label>
-        <input style={{ width: '500px' }} placeholder='Numero'{...register("addressNumber")}></input>
+        <input className="form-control mb-2" style={{ width: '425px' }} placeholder='Numero'{...register("addressNumber")}></input>
         <label className='App-link'>
           Complemento
         </label>
-        <input style={{ width: '500px' }} placeholder='Complemento'></input>
+        <input className="form-control mb-2" style={{ width: '425px' }} placeholder='Complemento'></input>
         <label className='App-link'>
           Logradouro
         </label>
-        <input style={{ width: '500px' }} placeholder='Logradouro' {...register("endereco")}></input>
+        <input className="form-control mb-2" style={{ width: '425px' }} placeholder='Logradouro' {...register("endereco")}></input>
         <label className='App-link'>
           Bairro
         </label>
-        <input style={{ width: '500px' }} placeholder='Bairro' {...register("bairro")}></input>
+        <input className="form-control mb-2" style={{ width: '425px' }} placeholder='Bairro' {...register("bairro")}></input>
         <label className='App-link'>
           Localidade
         </label>
-        <input style={{ width: '500px' }} placeholder='Localidade' {...register("cidade")}></input>
+        <input className="form-control mb-2" style={{ width: '425px' }} placeholder='Localidade' {...register("cidade")}></input>
         <label className='App-link'>
           UF
         </label>
-        <input style={{ width: '500px' }} placeholder='UF' {...register("uf")}></input>
+        <input className="form-control mb-2" style={{ width: '425px' }} placeholder='UF' {...register("uf")}></input>
+        <button id='btn' style={{ width: '425px', marginTop: '10px' }} className='btn btn-info' onClick={() => window.location.href = `https://earth.google.com/web/search/${cep}`}><FiNavigation /> Localizar no Mapa </button>
       </form>
      
     </div>
@@ -73,3 +75,6 @@ function App() {
 }
 
 export default App;
+
+// https://earth.google.com/web/search/
+// https://www.google.com.br/maps/search/
